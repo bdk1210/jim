@@ -43,7 +43,7 @@ async def on_message(message):
 
     # how to join feature
     # List of trigger phrases (lowercase)
-    triggers = [
+    htj_triggers = [
         "how to join",
         "how do i join",
         "how can i join",
@@ -53,8 +53,25 @@ async def on_message(message):
         # add more phrases as you want
     ]
 
+    ily_triggers = [
+        "i love you jim",
+        "jim i love you",
+        "i love jim"]
     
-    if any(phrase in message.content.lower() for phrase in triggers):
+    ily_responses = [
+        "i can't say it back but i appreciate the sentiment! :3",
+        "thanks but i'm not saying it back",
+        "i know what you're trying to do, and i won't say it back",
+        "thank you but you aren't fooling me."
+        ]
+    
+    if any(phrase in message.content.lower() for phrase in ily_triggers):
+        ilymessage = random.choice(ily_responses)
+        await message.channel.send(ilymessage)
+            
+
+    
+    if any(phrase in message.content.lower() for phrase in htj_triggers):
         await message.channel.send(
             "here's how to join:\n"
             "go to #server-info and take note of the server's ip address and port. *please note, we are a bedrock server.*\n"
