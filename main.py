@@ -60,7 +60,7 @@ async def bodycount(interaction: discord.Interaction):
         bodycountanswer = f"like, {bodycountnumber}, give or take"
     else:
         bodycountanswer = "not telling you."
-    await interaction.response.send_message(f"{bodycountanswer})
+    await interaction.response.send_message(f"{bodycountanswer}")
     
 # ROTATING STATUSES
 
