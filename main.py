@@ -108,7 +108,7 @@ statuses = [
     (discord.Status.online, discord.Activity(type=discord.ActivityType.playing, name="with your mom")),
     (discord.Status.dnd, discord.Activity(type=discord.ActivityType.listening, name="the screams of the damned :3")),
     (discord.Status.idle, discord.Activity(type=discord.ActivityType.watching, name="you sleep")),
-    (discord.Status.online, discord.Activity(type=discord.ActivityType.competing, name="the hunger games"))
+    (discord.Status.online, discord.Activity(type=discord.ActivityType.competing, name="the hunger games")),
     (discord.Status.online, discord.Streaming(name="the one and only", url="https://twitch.tv/lofigirl")),
 ]
 
