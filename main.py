@@ -40,6 +40,7 @@ async def on_message(message):
         # Send the message
         await message.channel.send(f"hi\n-# {random_number}% confidence")
 
+     
     # Keep commands working
     await bot.process_commands(message)
 
@@ -51,6 +52,16 @@ async def flip(interaction: discord.Interaction):
     else:
         result = random.choice(["it's heads!", "it's tails!", "looks like it's heads!", "looks like it's tails!", "and... it's heads!", "it landed on tails!", "heads! hopefully nobody put money on that.", "tails never fails!"])
     await interaction.response.send_message(f"{result} 🪙")
+
+@bot.tree.command(name="bodycount", description="i'm not telling you. there's like a 1% chance that i'd tell you.")
+async def bodycount(interaction: discord.Interaction):
+    if random.randit(1,100) == 67:
+        bodycountnumber = random.randit(2,1000)
+        bodycountanswer = f"like, {bodycountnumber}, give or take"
+    else:
+        bodycountanswer = "not telling you."
+    await interaction.response.send_message(f"{bodycountanswer})
+    
 # ROTATING STATUSES
 
 
