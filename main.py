@@ -33,18 +33,17 @@ async def on_message(message):
     if message.author == bot.user:
         return
 
+    msg_lower = message.content.lower()
+
+    # hi jim feature
     # If someone says "hi jim" (case-insensitive)
-    if message.content.lower() == "hi jim":
+    if msg_lower() == "hi jim":
         # Send a random confidence percentage
         random_number = random.randint(60, 100)
         # Send the message
         await message.channel.send(f"hi\n-# {random_number}% confidence")
 
-@bot.event
-async def on_message(message):
-    if message.author == bot.user:
-        return
-
+    # how to join feature
     # List of trigger phrases (lowercase)
     triggers = [
         "how to join",
@@ -56,10 +55,14 @@ async def on_message(message):
         # add more phrases as you want
     ]
 
-    msg_lower = message.content.lower()
-
+    
     if any(phrase in msg_lower for phrase in triggers):
-        await message.channel.send("here's how to join:\ngo to #server-info and take note of the server's ip address and port. *please note, we are a bedrock server.*\nthen, open minecraft. from the main screen, click play, and then servers at the top-right.\nscroll down through the servers until you see Add Server. click it, and enter the details from #server-info. the server name can be whatever you like.\n\n have fun!")
+        await message.channel.send(
+            "here's how to join:\n"
+            "go to #server-info and take note of the server's ip address and port. *please note, we are a bedrock server.*\n"
+            "then, open minecraft. from the main screen, click play, and then servers at the top-right.\n"
+            "scroll down through the servers until you see Add Server. click it, and enter the details from #server-info. the server name can be whatever you like.\n\n"
+            "have fun!")
 
     # Keep commands working
     await bot.process_commands(message)
@@ -76,7 +79,7 @@ async def flip(interaction: discord.Interaction):
 @bot.tree.command(name="bodycount", description="i'm not telling you. there's like a 1% chance that i'd tell you.")
 async def bodycount(interaction: discord.Interaction):
     if random.randint(1,100) == 67:
-        bodycountnumber = random.randit(2,1000)
+        bodycountnumber = random.randint(2,1000)
         bodycountanswer = f"like, {bodycountnumber}, give or take"
     else:
         bodycountanswer = "not telling you."
