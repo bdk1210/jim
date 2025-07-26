@@ -40,7 +40,7 @@ async def on_message(message):
         # Send the message
         await message.channel.send(f"hi\n-# {random_number}% confidence")
 
-   @bot.event
+@bot.event
 async def on_message(message):
     if message.author == bot.user:
         return
