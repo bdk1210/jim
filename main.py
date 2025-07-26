@@ -1,42 +1,77 @@
-# This code is based on the following example:
-# https://discordpy.readthedocs.io/en/stable/quickstart.html#a-minimal-bot
-
 import os
-
 import discord
+from discord.ext import commands
+import random # for random confidence percentages
+import aiohttp # for fetching the picture of the day i think
+from keep_alive import keep_alive # self-explanatory
+from discord.ext import tasks
+import itertools # rotating statuses
 
-intents = discord.Intents.default()
-intents.message_content = True
+# Define the bot class with slash command support
+class jim(commands.Bot):
+    def __init__(self):
+        # Enable reading messages
+        intents = discord.Intents.default()
+        intents.message_content = True
+        super().__init__(command_prefix="!", intents=intents)
 
-client = discord.Client(intents=intents)
+    async def setup_hook(self):
+        # Sync slash commands globally
+        await self.tree.sync()
 
+# Create the bot instance
+bot = jim()
 
-@client.event
+@bot.event
 async def on_ready():
-    print('We have logged in as {0.user}'.format(client))
+    print(f"✅ Logged in as {bot.user}")
+    if not rotate_status.is_running():
+        rotate_status.start()
 
-
-@client.event
+@bot.event
 async def on_message(message):
-    if message.author == client.user:
+    if message.author == bot.user:
         return
 
-    if message.content.startswith('$hello'):
-        await message.channel.send('Hello!')
+    # If someone says "hi jim" (case-insensitive)
+    if message.content.lower() == "hi jim":
+        # Send a random confidence percentage
+        random_number = random.randint(60, 100)
+        # Send the message
+        await message.channel.send(f"hi\n-# {random_number}% confidence")
 
+    # Keep commands working
+    await bot.process_commands(message)
 
-try:
-  token = os.getenv("TOKEN") or ""
-  if token == "":
-    raise Exception("Please add your token to the Secrets pane.")
-  client.run(token)
-except discord.HTTPException as e:
-    if e.status == 429:
-        print(
-            "The Discord servers denied the connection for making too many requests"
-        )
-        print(
-            "Get help from https://stackoverflow.com/questions/66724687/in-discord-py-how-to-solve-the-error-for-toomanyrequests"
-        )
+@bot.tree.command(name="flip", description="flip a coin!")
+async def flip(interaction: discord.Interaction):
+    # 1 in 1000 chance for "on it's side"
+    if random.randint(1, 1000) == 1:
+        result = "somehow, God KNOWS how, the coin landed on its side!"
     else:
-        raise e
+        result = random.choice(["it's heads!", "it's tails!", "looks like it's heads!", "looks like it's tails!", "and... it's heads!", "it landed on tails!", "heads! hopefully nobody put money on that.", "tails never fails!"])
+    await interaction.response.send_message(f"{result} 🪙")
+# ROTATING STATUSES
+
+
+# List of statuses to rotate through
+statuses = [
+    (discord.Status.online, discord.Activity(type=discord.ActivityType.playing, name="with your mom")),
+    (discord.Status.dnd, discord.Activity(type=discord.ActivityType.listening, name="the screams of the damned :3")),
+    (discord.Status.idle, discord.Activity(type=discord.ActivityType.watching, name="you sleep")),
+    (discord.Status.online, discord.Activity(type=discord.ActivityType.competing, name="the hunger games"))
+]
+
+status_cycle = itertools.cycle(statuses) # idk what this does but chatgpt said it "create the cycle iterator once"
+
+@tasks.loop(seconds=5)  # Change every 5 seconds
+async def rotate_status():
+    status, activity = next(status_cycle)  # Get the next status and activity from the cycle
+    await bot.change_presence(status=status, activity=activity)
+
+# KEEP THESE AT THE BOTTOM NO MATTER WHAT
+# Start the keep-alive server so the bot stays online on Replit (managed on UptimeRobot)
+keep_alive()
+
+# Run the bot using your secret TOKEN
+bot.run(os.getenv("TOKEN"))
