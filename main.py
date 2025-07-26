@@ -1,7 +1,7 @@
 import os
 import discord
 from discord.ext import commands
-import random # for random confidence percentages
+import random # for random numbers
 import aiohttp # for fetching the picture of the day i think
 from keep_alive import keep_alive # self-explanatory
 from discord.ext import tasks
@@ -55,7 +55,7 @@ async def flip(interaction: discord.Interaction):
 
 @bot.tree.command(name="bodycount", description="i'm not telling you. there's like a 1% chance that i'd tell you.")
 async def bodycount(interaction: discord.Interaction):
-    if random.randit(1,100) == 67:
+    if random.randint(1,100) == 67:
         bodycountnumber = random.randit(2,1000)
         bodycountanswer = f"like, {bodycountnumber}, give or take"
     else:
