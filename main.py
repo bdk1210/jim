@@ -40,7 +40,27 @@ async def on_message(message):
         # Send the message
         await message.channel.send(f"hi\n-# {random_number}% confidence")
 
-     
+   @bot.event
+async def on_message(message):
+    if message.author == bot.user:
+        return
+
+    # List of trigger phrases (lowercase)
+    triggers = [
+        "how to join",
+        "how do i join",
+        "how can i join",
+        "join instructions",
+        "how do you join",
+        "htj",
+        # add more phrases as you want
+    ]
+
+    msg_lower = message.content.lower()
+
+    if any(phrase in msg_lower for phrase in triggers):
+        await message.channel.send("here's how to join:\ngo to #server-info and take note of the server's ip address and port. *please note, we are a bedrock server.*\nthen, open minecraft. from the main screen, click play, and then servers at the top-right.\nscroll down through the servers until you see Add Server. click it, and enter the details from #server-info. the server name can be whatever you like.\n\n have fun!")
+
     # Keep commands working
     await bot.process_commands(message)
 
