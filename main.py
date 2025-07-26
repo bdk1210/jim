@@ -33,11 +33,9 @@ async def on_message(message):
     if message.author == bot.user:
         return
 
-    msg_lower = message.content.lower()
-
     # hi jim feature
     # If someone says "hi jim" (case-insensitive)
-    if msg_lower() == "hi jim":
+    if message.content.lower() == "hi jim":
         # Send a random confidence percentage
         random_number = random.randint(60, 100)
         # Send the message
@@ -56,7 +54,7 @@ async def on_message(message):
     ]
 
     
-    if any(phrase in msg_lower for phrase in triggers):
+    if any(phrase in message.content.lower() for phrase in triggers):
         await message.channel.send(
             "here's how to join:\n"
             "go to #server-info and take note of the server's ip address and port. *please note, we are a bedrock server.*\n"
