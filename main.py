@@ -1,11 +1,15 @@
+# i have absolutely no idea what i am doing, please have mercy on me
+# all i know is that the imports go at the top and that's about it
 import os
 import discord
 from discord.ext import commands
 import random # for random numbers
-import aiohttp # for fetching the picture of the day i think
+import aiohttp # for fetching the picture of the day  
 from keep_alive import keep_alive # self-explanatory
 from discord.ext import tasks
 import itertools # rotating statuses
+import time
+from datetime import datetime, timedelta
 
 # Define the bot class with slash command support
 class jim(commands.Bot):
@@ -59,7 +63,6 @@ async def on_message(message):
         "join instructions",
         "how do you join",
         "htj",
-        # add more phrases as you want
     ]
 
     ily_triggers = [
@@ -117,6 +120,25 @@ async def say(
 ):
     await channel.send(message)
     await interaction.response.send_message("Message sent!", ephemeral=True)
+
+@bot.tree.command(name="purge", description="delete's messages from a specified user within the specified timeframe in the current channel")
+async def purge(
+    interaction: discord.Interaction,
+    user: discord.Member,
+    minutes: int = 10
+):
+    await interaction.response.defer(ephemeral=True)  # Acknowledge the command immediately
+    channel = interaction.channel
+    after_time = datetime.now(datetime.timezone.utc)
+    deleted = 0
+
+    after_time = datetime.now(datetime.timezone.utc) - timedelta(minutes=minutes)
+    async for msg in channel.history(after=after_time):
+        if msg.author == user:
+            await msg.delete()
+            deleted += 1
+
+    await interaction.followup.send(f"Deleted {deleted} messages from {user.mention} in the last {minutes} minutes.", ephemeral=True)
     
 # ROTATING STATUSES
 # List of statuses to rotate through
