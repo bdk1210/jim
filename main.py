@@ -4,8 +4,7 @@ import os
 import discord
 from discord.ext import commands
 import random # for random numbers
-import aiohttp # for fetching the picture of the day  
-from keep_alive import keep_alive # self-explanatory
+import aiohttp # for fetching the picture of the day
 from discord.ext import tasks
 import itertools # rotating statuses
 import time
@@ -157,8 +156,6 @@ async def rotate_status():
     await bot.change_presence(status=status, activity=activity)
 
 # KEEP THESE AT THE BOTTOM NO MATTER WHAT
-# Start the keep-alive server so the bot stays online (managed on UptimeRobot)
-keep_alive()
 
 # Run the bot using your secret TOKEN
 bot.run(os.getenv("TOKEN"))
