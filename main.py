@@ -132,7 +132,7 @@ async def purge(
     after_time = datetime.now(datetime.timezone.utc)
     deleted = 0
 
-    after_time = datetime.now(datetime.timezone.utc) - timedelta(minutes=minutes)
+    after_time = datetime.now(timezone.utc) - timedelta(minutes=minutes)
     async for msg in channel.history(after=after_time):
         if msg.author == user:
             await msg.delete()
