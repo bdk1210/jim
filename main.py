@@ -9,7 +9,7 @@ from keep_alive import keep_alive # self-explanatory
 from discord.ext import tasks
 import itertools # rotating statuses
 import time
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 
 # Define the bot class with slash command support
 class jim(commands.Bot):
