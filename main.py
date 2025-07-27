@@ -99,10 +99,17 @@ async def bodycount(interaction: discord.Interaction):
     else:
         bodycountanswer = "not telling you."
     await interaction.response.send_message(f"{bodycountanswer}")
+
+@bot.tree.command(name="say", description="send a message as the bot")
+async def say(
+    interaction: discord.Interaction,
+    channel: discord.TextChannel,
+    message: str
+):
+    await channel.send(message)
+    await interaction.response.send_message("Message sent!", ephemeral=True)
     
 # ROTATING STATUSES
-
-
 # List of statuses to rotate through
 statuses = [
     (discord.Status.online, discord.Activity(type=discord.ActivityType.playing, name="with your mom")),
