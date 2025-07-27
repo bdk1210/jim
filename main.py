@@ -121,7 +121,7 @@ async def say(
     await channel.send(message)
     await interaction.response.send_message("Message sent!", ephemeral=True)
 
-@bot.tree.command(name="purge", description="delete's messages from a specified user within the specified timeframe in the current channel")
+@bot.tree.command(name="purge", description="delete's messages from a specified usstier within the specified timeframe in the current channel")
 async def purge(
     interaction: discord.Interaction,
     user: discord.Member,
@@ -129,7 +129,6 @@ async def purge(
 ):
     await interaction.response.defer(ephemeral=True)  # Acknowledge the command immediately
     channel = interaction.channel
-    after_time = datetime.now(datetime.timezone.utc)
     deleted = 0
 
     after_time = datetime.now(timezone.utc) - timedelta(minutes=minutes)
