@@ -34,8 +34,17 @@ async def on_message(message):
         return
 
     # hi jim feature
+    hi_triggers = [
+        "hi jim",
+        "hello jim",
+        "hey jim",
+        "jim hi",
+        "jim hello",
+        "jim hey",
+        "hi jim",
+    ]
     # If someone says "hi jim" (case-insensitive)
-    if message.content.lower() == "hi jim":
+    if any(phrase in message.content.lower() for phrase in hi_triggers):
         # Send a random confidence percentage
         random_number = random.randint(60, 100)
         # Send the message
@@ -127,7 +136,7 @@ async def rotate_status():
     await bot.change_presence(status=status, activity=activity)
 
 # KEEP THESE AT THE BOTTOM NO MATTER WHAT
-# Start the keep-alive server so the bot stays online on Replit (managed on UptimeRobot)
+# Start the keep-alive server so the bot stays online (managed on UptimeRobot)
 keep_alive()
 
 # Run the bot using your secret TOKEN
