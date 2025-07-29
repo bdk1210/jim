@@ -85,9 +85,10 @@ async def on_message(message):
     if any(phrase in message.content.lower() for phrase in htj_triggers):
         await message.channel.send(
             "here's how to join:\n"
-            "go to #server-info and take note of the server's ip address and port. *please note, we are a bedrock server.*\n"
+            "go to <#1395507047574798537> and take note of the server's ip address and port. *please note, we are a bedrock server.*\n"
             "then, open minecraft. from the main screen, click play, and then servers at the top-right.\n"
             "scroll down through the servers until you see Add Server. click it, and enter the details from #server-info. the server name can be whatever you like.\n\n"
+            "alternatively, you can go to <#1398556073132036187> and click the link under \"connect.\"\n\n"
             "have fun!")
 
     # Keep commands working
