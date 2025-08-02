@@ -19,23 +19,19 @@ class jim(commands.Bot):
         super().__init__(command_prefix="!", intents=intents)
     # Logging
     async def setup_hook(self):
-        print("Setup: Starting cog loading")
-        await self.load_extension("cogs.statuses")
-        print("Loaded statuses")
-        await self.load_extension("cogs.respond")
-        print("Loaded respond")
-        await self.load_extension("cogs.slash")
-        print("Loaded slash")
-        print("Setup: Syncing tree...")
-        await self.tree.sync()
-        print("Setup complete")
-
-    async def setup_hook(self):
-        # Sync slash commands globally
-        await self.tree.sync()
-        await self.load_extension("cogs.statuses")
-        await self.load_extension("cogs.respond")
-        await self.load_extension("cogs.slash")
+        try:
+            print("Setup: Starting cog loading", flush=True)
+            await self.load_extension("cogs.statuses")
+            print("Loaded statuses", flush=True)
+            await self.load_extension("cogs.respond")
+            print("Loaded respond", flush=True)
+            await self.load_extension("cogs.slash")
+            print("Loaded slash", flush=True)
+            print("Setup: Syncing tree...", flush=True)
+            await self.tree.sync()
+            print("Setup complete", flush=True)
+        except Exception as e:
+            print(f"Setup failed: {e}", flush=True)
 
 # Create the bot instance
 bot = jim()
