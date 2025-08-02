@@ -8,6 +8,7 @@ class Greetings(commands.Cog):
     @commands.Cog.listener()
     async def on_message(self, message):
         if message.author == self.bot.user:
+            await self.bot.process_commands(message)
             return
 
         content = message.content.lower()
