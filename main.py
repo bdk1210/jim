@@ -28,6 +28,19 @@ class jim(commands.Bot):
 # Create the bot instance
 bot = jim()
 
+# Logging
+async def setup_hook(self):
+    print("Setup: Starting cog loading")
+    await self.load_extension("cogs.statuses")
+    print("Loaded statuses")
+    await self.load_extension("cogs.respond")
+    print("Loaded respond")
+    await self.load_extension("cogs.slash")
+    print("Loaded slash")
+    print("Setup: Syncing tree...")
+    await self.tree.sync()
+    print("Setup complete")
+
 # KEEP THESE AT THE BOTTOM NO MATTER WHAT
 
 # Run the bot using your secret TOKEN
