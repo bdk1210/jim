@@ -17,6 +17,18 @@ class jim(commands.Bot):
         intents = discord.Intents.default()
         intents.message_content = True
         super().__init__(command_prefix="!", intents=intents)
+    # Logging
+    async def setup_hook(self):
+        print("Setup: Starting cog loading")
+        await self.load_extension("cogs.statuses")
+        print("Loaded statuses")
+        await self.load_extension("cogs.respond")
+        print("Loaded respond")
+        await self.load_extension("cogs.slash")
+        print("Loaded slash")
+        print("Setup: Syncing tree...")
+        await self.tree.sync()
+        print("Setup complete")
 
     async def setup_hook(self):
         # Sync slash commands globally
@@ -27,19 +39,6 @@ class jim(commands.Bot):
 
 # Create the bot instance
 bot = jim()
-
-# Logging
-async def setup_hook(self):
-    print("Setup: Starting cog loading")
-    await self.load_extension("cogs.statuses")
-    print("Loaded statuses")
-    await self.load_extension("cogs.respond")
-    print("Loaded respond")
-    await self.load_extension("cogs.slash")
-    print("Loaded slash")
-    print("Setup: Syncing tree...")
-    await self.tree.sync()
-    print("Setup complete")
 
 # KEEP THESE AT THE BOTTOM NO MATTER WHAT
 
