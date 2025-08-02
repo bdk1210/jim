@@ -17,6 +17,10 @@ class jim(commands.Bot):
         intents = discord.Intents.default()
         intents.message_content = True
         super().__init__(command_prefix="!", intents=intents)
+
+    async def on_ready(self):
+        print(f"✅ Logged in as {self.user} (ID: {self.user.id})", flush=True)
+
     # Logging
     async def setup_hook(self):
         try:
