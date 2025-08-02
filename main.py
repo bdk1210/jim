@@ -21,9 +21,9 @@ class jim(commands.Bot):
     async def setup_hook(self):
         # Sync slash commands globally
         await self.tree.sync()
-        await self.load_extension("statuses")
-        await self.load_extension("respond")
-        await self.load_extension("slash")
+        await self.load_extension("cogs.statuses")
+        await self.load_extension("cogs.respond")
+        await self.load_extension("cogs.slash")
 
 # Create the bot instance
 bot = jim()
