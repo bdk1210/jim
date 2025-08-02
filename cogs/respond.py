@@ -55,10 +55,10 @@ class Greetings(commands.Cog):
             "i know what you're trying to do, and i won't say it back",
             "thank you but you aren't fooling me."
         ]
-        if any(phrase in content for phrase in ily_triggers):
-            response = random.choice(ily_responses)
-            await message.channel.send(response)
-            return
+        
+        if any(phrase in message.content.lower() for phrase in ily_triggers):
+            ilymessage = random.choice(ily_responses)
+            await message.channel.send(ilymessage)
 
         # Keep commands working
         await self.bot.process_commands(message)

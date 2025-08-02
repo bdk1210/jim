@@ -2,6 +2,8 @@ import discord
 import random
 import os
 from discord.ext import app_commands, tasks
+import datetime
+from datetime import timedelta, timezone
 
 @app_commands.command(name="flip", description="flip a coin!")
 async def flip(interaction: discord.Interaction):
