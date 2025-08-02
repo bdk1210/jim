@@ -3,7 +3,7 @@ import time
 from discord.ext import commands, tasks
 import itertools
 
-class MyCog(commands.Cog):
+class Statuses(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
@@ -28,3 +28,6 @@ class MyCog(commands.Cog):
     async def on_ready(self):
         if not self.rotate_status.is_running():
             self.rotate_status.start()
+
+async def setup(bot):
+    await bot.add_cog(Statuses(bot))
