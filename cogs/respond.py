@@ -1,7 +1,7 @@
 import random
 from discord.ext import commands
 
-class Greetings(commands.Cog):
+class Respond(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
@@ -65,4 +65,4 @@ class Greetings(commands.Cog):
         await self.bot.process_commands(message)
 
 async def setup(bot):
-    await bot.add_cog(Greetings(bot))
+    await bot.add_cog(Respond(bot))
