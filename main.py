@@ -32,8 +32,7 @@ class jim(commands.Bot):
             await self.load_extension("cogs.slash")
             print("Loaded slash", flush=True)
             print("Setup: Syncing tree...", flush=True)
-            guild = discord.Object(id=1398587580320059392)
-            await self.tree.sync(guild=guild)
+            await self.tree.sync()
             print("Tree synced", flush=True)
             print("Setup complete", flush=True)
         except Exception as e:
