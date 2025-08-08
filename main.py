@@ -21,7 +21,6 @@ class jim(commands.Bot):
     async def on_ready(self):
         print(f"✅ Logged in as {self.user} (ID: {self.user.id})", flush=True)
 
-    @bot.event
     async def on_ready():
         await bot.wait_until_ready
         guild = discord.Object(id=1398587580320059392)
