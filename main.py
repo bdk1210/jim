@@ -26,7 +26,7 @@ class jim(commands.Bot):
         await bot.wait_until_ready
         guild = discord.Object(id=1398587580320059392)
         await bot.tree.sync(guild=guild)
-        printf(Synced commands to guild {guild.id})
+        print(f"Synced commands to guild {guild.id}")
 
     # Logging
     async def setup_hook(self):
