@@ -21,10 +21,8 @@ class jim(commands.Bot):
     async def on_ready(self):
         print(f"✅ Logged in as {self.user} (ID: {self.user.id})", flush=True)
 
-    async def on_ready():
-        await bot.wait_until_ready
         guild = discord.Object(id=1398587580320059392)
-        await bot.tree.sync(guild=guild)
+        await self.tree.sync(guild=guild)
         print(f"Synced commands to guild {guild.id}")
 
     # Logging
