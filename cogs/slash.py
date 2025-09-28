@@ -19,6 +19,32 @@ class Slash(commands.Cog):
             result = random.choice(["it's heads!", "it's tails!", "looks like it's heads!", "looks like it's tails!", "and... it's heads!", "it landed on tails!", "heads! hopefully nobody put money on that.", "tails never fails!"])
         await interaction.response.send_message(f"{result} 🪙")
 
+    @app_commands.command(name="info", description="technical info about the bot")
+    async def info(self, interaction: discord.Interaction):
+        import subprocess
+        uptime = self.bot.get_uptime()
+
+        try:
+            # Get the current git tag for this commit
+            tag = subprocess.check_output(
+                ["git", "describe", "--tags", "--exact-match"],
+                stderr=subprocess.DEVNULL
+            ).decode().strip()
+        except subprocess.CalledProcessError:
+            tag = "untagged"
+
+        await interaction.response.send_message(
+            f"Copyright (c) 2025 mocha. All rights reserved under the Berne Convention and other applicable international copyright law. \n"
+            f"This code is available to read for verification purposes only. Reproduction without authorization is illegal. \n"
+            f"jim version {tag}. Stable production release. \n"
+            f"Source code can be found on GitHub at: https://github.com/bdk1210/jim. \n"
+            f"Hosted on Railway, built using Python in Visual Studio Code. \n"
+            f"Utilizes discord.py and various other open source libraries. \n"
+            f"This bot has been running for: {uptime} since last restart. \n"
+            f"Ping-pong! {round(self.bot.latency * 1000)}ms latency. \n"
+            f":3"
+        )
+
     @app_commands.command(name="bodycount", description="i'm not telling you. there's like a 1% chance that i'd tell you.")
     async def bodycount(self, interaction: discord.Interaction):
         if random.randint(1,100) == 67:

@@ -18,25 +18,35 @@ class jim(commands.Bot):
         intents.message_content = True
         super().__init__(command_prefix="!", intents=intents)
 
+    def get_uptime(self):
+        now = datetime.utcnow()
+        delta = now - self.start_time
+        days = delta.days
+        hours, remainder = divmod(delta.seconds, 3600)
+        minutes, seconds = divmod(remainder, 60)
+        return f"{days} days, {hours} hours, {minutes} minutes, and {seconds} seconds"
+
     async def on_ready(self):
-        print(f"✅ Logged in as {self.user} (ID: {self.user.id})", flush=True)
+        print(f"✅ logged in as {self.user} (ID: {self.user.id}) :3", flush=True)
 
     # Logging
     async def setup_hook(self):
         try:
-            print("Setup: Starting cog loading", flush=True)
+            print("setup: starting cog loading", flush=True)
             await self.load_extension("cogs.statuses")
-            print("Loaded statuses", flush=True)
+            print("loaded statuses", flush=True)
             await self.load_extension("cogs.respond")
-            print("Loaded respond", flush=True)
+            print("loaded respond", flush=True)
             await self.load_extension("cogs.slash")
-            print("Loaded slash", flush=True)
-            print("Setup: Syncing tree...", flush=True)
+            print("loaded slash", flush=True)
+            print("setup: syncing tree...", flush=True)
             await self.tree.sync()
-            print("Tree synced", flush=True)
-            print("Setup complete", flush=True)
+            print("tree synced", flush=True)
+            self.start_time = datetime.datetime.utcnow()
+            print("start time recorded", flush=True)
+            print("setup complete", flush=True)
         except Exception as e:
-            print(f"Setup failed: {e}", flush=True)
+            print(f"well, shit. setup failed: {e}", flush=True)
 
 # Create the bot instance
 bot = jim()
