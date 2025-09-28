@@ -29,6 +29,10 @@ class jim(commands.Bot):
     async def on_ready(self):
         print(f"✅ logged in as {self.user} (ID: {self.user.id}) :3", flush=True)
 
+        guild = discord.Object(id=1398587580320059392)
+        await self.tree.sync(guild=guild)
+        print(f"Synced commands to guild {guild.id}")
+
     # Logging
     async def setup_hook(self):
         try:
