@@ -46,7 +46,7 @@ class jim(commands.Bot):
             print("setup: syncing tree...", flush=True)
             await self.tree.sync()
             print("tree synced", flush=True)
-            self.start_time = datetime.datetime.utcnow()
+            self.start_time = datetime.now(timezone.utc)
             print("start time recorded", flush=True)
             print("setup complete", flush=True)
         except Exception as e:
