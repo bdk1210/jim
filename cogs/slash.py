@@ -19,7 +19,7 @@ class Slash(commands.Cog):
             result = random.choice(["it's heads!", "it's tails!", "looks like it's heads!", "looks like it's tails!", "and... it's heads!", "it landed on tails!", "heads! hopefully nobody put money on that.", "tails never fails!"])
         await interaction.response.send_message(f"{result} 🪙")
 
-    @app_commands.command(name="info", description="technical info about the bot")
+    @app_commands.command(name="info", description="technical info about the bot. you wouldn't get it.")
     async def info(self, interaction: discord.Interaction):
         import subprocess
         uptime = self.bot.get_uptime()

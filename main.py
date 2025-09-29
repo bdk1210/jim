@@ -19,7 +19,7 @@ class jim(commands.Bot):
         super().__init__(command_prefix="!", intents=intents)
 
     def get_uptime(self):
-        now = datetime.utcnow()
+        now = datetime.now(timezone.utc)
         delta = now - self.start_time
         days = delta.days
         hours, remainder = divmod(delta.seconds, 3600)
