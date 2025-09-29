@@ -34,14 +34,14 @@ class Slash(commands.Cog):
             tag = "untagged"
 
         await interaction.response.send_message(
-            f"Copyright (c) 2025 mocha. All rights reserved under the Berne Convention and other applicable international copyright law. \n"
-            f"This code is available to read for verification purposes only. Reproduction without authorization is illegal. \n"
-            f"jim version {tag}. Stable production release. \n"
+            f"*Copyright (c) 2025 mocha. All rights reserved under the Berne Convention and other applicable international copyright law.* \n"
+            f"This code is available to read for verification purposes only. Reproduction without authorization is illegal. \n\n"
+            f"jim version **{tag}**. Stable production release. \n\n"
             f"Source code can be found on GitHub at: https://github.com/bdk1210/jim. \n"
             f"Hosted on Railway, built using Python in Visual Studio Code. \n"
             f"Utilizes discord.py and various other open source libraries. \n"
-            f"This bot has been running for: {uptime} since last restart. \n"
-            f"Ping-pong! {round(self.bot.latency * 1000)}ms latency. \n"
+            f"This bot has been running for: **{uptime}** since last restart. \n\n"
+            f"Ping-pong! **{round(self.bot.latency * 1000)}ms** latency. \n"
             f":3"
         )
 
