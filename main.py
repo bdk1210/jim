@@ -27,7 +27,7 @@ class jim(commands.Bot):
         return f"{days} days, {hours} hours, {minutes} minutes, and {seconds} seconds"
 
     async def on_ready(self):
-        print(f"✅ logged in as {self.user} (ID: {self.user.id}) :3", flush=True)
+        print(f"✅ digging as {self.user} (ID: {self.user.id}) :3", flush=True)
 
         guild = discord.Object(id=1398587580320059392)
         await self.tree.sync(guild=guild)
@@ -48,9 +48,9 @@ class jim(commands.Bot):
             print("tree synced", flush=True)
             self.start_time = datetime.now(timezone.utc)
             print("start time recorded", flush=True)
-            print("setup complete", flush=True)
+            print("digging complete", flush=True)
         except Exception as e:
-            print(f"well, shit. setup failed: {e}", flush=True)
+            print(f"digging failed: {e}", flush=True)
 
 # Create the bot instance
 bot = jim()
